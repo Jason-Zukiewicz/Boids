@@ -1,0 +1,10 @@
+# Ignore the build folder
+/build/
+
+# Ignore compiled binaries
+*.o
+*.out
+*.exe
+
+# Ignore any other generated files or directories
+# Add more patterns if needed based on your project
