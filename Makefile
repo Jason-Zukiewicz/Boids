@@ -1,23 +1,44 @@
-CC = gcc
-CXX = g++
-CFLAGS = -Wall -Wextra -std=c99
-CXXFLAGS = -Wall -Wextra -std=c++11
+# Compiler and flags
+CC = g++
+CFLAGS = -Wall -Wextra -std=c++20
 LDFLAGS = -lSDL2 -lSDL2main
 
-SRC_DIR = src
-BUILD_DIR = build
+# Executable
+TARGET = build/app
 
-SRC = $(wildcard $(SRC_DIR)/*.cpp)
-OBJ = $(SRC:$(SRC_DIR)/%.cpp=$(BUILD_DIR)/%.o)
-EXECUTABLE = $(BUILD_DIR)/app
 
-all: $(EXECUTABLE)
+# Directories
+BLDDIR = build
+SRCDIR = src
+GAMEDIR = $(SRCDIR)/game
+HANDDIR = $(SRCDIR)/handler
+OBJDIR = $(SRCDIR)/object
 
-$(EXECUTABLE): $(OBJ)
-	$(CXX) $(CXXFLAGS) $^ -o $@ $(LDFLAGS)
+# Object files
+OBJS =  $(HANDDIR)/eventHandler.o $(GAMEDIR)/game.o  $(OBJDIR)/object.o
 
-$(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+# Source files
+SRCS = $(SRCDIR)/main.cpp
+
+
+
+# Rules
+all: $(TARGET)
+
+$(TARGET): $(OBJS) $(SRCS)
+	$(CC) -o $(TARGET) $(OBJS) $(SRCS) $(CFLAGS) $(LDFLAGS)
+
+$(GAMEDIR)/%.o: $(GAMEDIR)/%.cpp $(GAMEDIR)/%.h
+	$(CC) -c $< -o $@ $(CFLAGS)
+
+$(HANDDIR)/%.o: $(HANDDIR)/%.cpp $(HANDDIR)/%.h
+	$(CC) -c $< -o $@ $(CFLAGS)
+
+$(OBJDIR)/%.o: $(OBJDIR)/%.cpp $(OBJDIR)/%.h
+	$(CC) -c $< -o $@ $(CFLAGS)
 
 clean:
-	rm -f $(OBJ) $(EXECUTABLE)
+	rm -f $(TARGET)
+
+clear:
+	rm -f $(TARGET)

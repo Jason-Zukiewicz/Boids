@@ -1,7 +1,12 @@
-How To Build:
+Created By: 
+Joel Prebish & Jason Zukiewicz
+
+
+How To Build (UBUNTU):
 
 Install make 
 ```
+sudo apt-get install libsdl2-dev
 sudo apt install make
 ```
 
@@ -20,4 +25,3 @@ Run it
 ./app
 ```
 
-Joel Prebish
