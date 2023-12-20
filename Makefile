@@ -2,7 +2,7 @@
 CC = g++
 
 # Compiler flags
-CFLAGS = -Wall -Wextra -std=c++20 -Wno-comment
+CFLAGS = -Wall -Wextra -std=c++20 -Wno-comment -Wno-narrowing
 
 # Directories
 SRC_DIR = src

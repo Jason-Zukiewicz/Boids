@@ -12,9 +12,10 @@
 class Game {
 public:
     bool isRunning = true;
-    int frameRate = 60;
     int WIDTH = 800;
     int HEIGHT = 600;
+    const int targetFPS = 30;
+    const int delayTime = 1000 / targetFPS;
 
 private:
     SDL_Window *window;

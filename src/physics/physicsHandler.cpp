@@ -6,6 +6,12 @@ PhysicsHandler::PhysicsHandler(int w, int h) : WIDTH(w), HEIGHT(h) {
 
 PhysicsHandler::~PhysicsHandler() {}
 
+void PhysicsHandler::Update() {
+    for (auto &obj : objs) {
+        obj.Update();
+    }
+}
+
 void PhysicsHandler::addObject() {
     int x = rand() % ((WIDTH - 0) + 1);
     int y = rand() % ((HEIGHT - 0) + 1);
@@ -17,6 +23,7 @@ void PhysicsHandler::addObject() {
     int a = 255;
 
     Object obj(x, y, w, h, r, g, b, a);
+    obj.vel.y = 0.5;
     objs.push_back(obj);
 }
 vector<Object> *PhysicsHandler::getObjects() {

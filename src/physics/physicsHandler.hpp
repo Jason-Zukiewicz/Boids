@@ -19,6 +19,7 @@ public:
 
     void addObject();
     vector<Object> *getObjects();
+    void Update();
 
 private:
 };

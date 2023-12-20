@@ -28,16 +28,25 @@ Game::~Game() {
 }
 
 void Game::Run() {
+    Uint32 frameStart;
+    int frameTime;
     while (isRunning) {
+        frameStart = SDL_GetTicks();
 
         Events();
         Update();
         Draw();
+
+        frameTime = SDL_GetTicks() - frameStart;
+
+        if (frameTime < delayTime) {
+            SDL_Delay(delayTime - frameTime); // Delay remaining time to control FPS
+        }
     }
 }
 
 void Game::Update() {
-    // printf("INSIDE Update\n");
+    pHandler.Update();
 }
 
 void Game::Draw() {
