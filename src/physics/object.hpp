@@ -4,6 +4,8 @@
 #include <SDL2/SDL.h>
 #include <cstdio>
 
+const int SIZE = 50;
+
 class Object {
 private:
     int id;
@@ -14,6 +16,8 @@ public:
     vec2 pos, vel, acc;
 
 public:
+    Object();
+    Object(int x, int y);
     Object(int x, int y, int w, int h, int r, int g, int b, int a);
     ~Object();
 

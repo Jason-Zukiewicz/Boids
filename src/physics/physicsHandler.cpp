@@ -48,7 +48,23 @@ void PhysicsHandler::checkCollision() {
     }
 }
 
-// < ----------------------------------- [] ----------------------------------------->
+// < ----------------------------------- [ OBJECT CREATION ] ----------------------------------------->
+
+void PhysicsHandler::createPrey() {
+    Prey prey(200, 300);
+    objs.push_back(prey);
+}
+
+void PhysicsHandler::createPred() {
+    Pred pred(400, 300);
+    objs.push_back(pred);
+}
+
+void PhysicsHandler::createFood() {
+    Food food(300, 100);
+    objs.push_back(food);
+}
+// < ----------------------------------- [ TEMP OBJECTS] ----------------------------------------->
 
 void PhysicsHandler::addMovingObject() {
     Object obj(200, 300, 100, 100, 0, 0, 255, 255);

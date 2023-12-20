@@ -90,6 +90,15 @@ void Game::Events() {
             case SDLK_o:
                 pHandler.addStationaryObject();
                 break;
+            case SDLK_z:
+                pHandler.createPrey();
+                break;
+            case SDLK_x:
+                pHandler.createPred();
+                break;
+            case SDLK_c:
+                pHandler.createFood();
+                break;
             }
         }
     }

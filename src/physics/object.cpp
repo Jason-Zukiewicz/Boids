@@ -1,5 +1,13 @@
 #include "object.hpp"
 
+Object::Object()
+    : rect{0, 0, 0, 0}, color{0, 0, 0, 0}, pos{0, 0}, vel{0, 0}, acc{0, 0} {
+}
+
+Object::Object(int x, int y)
+    : rect{x, y, 0, 0}, color{0, 0, 0, 0}, pos{x, y}, vel{0, 0}, acc{0, 0} {
+}
+
 Object::Object(int x, int y, int w, int h, int r, int g, int b, int a)
     : rect{x, y, w, h}, color{r, g, b, a}, pos{x, y}, vel{0, 0}, acc{0, 0} {
 }

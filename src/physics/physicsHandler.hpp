@@ -1,7 +1,10 @@
 
 #pragma once
 
+#include "food.hpp"
 #include "object.hpp"
+#include "pred.hpp"
+#include "prey.hpp"
 #include <random>
 #include <vector>
 using std::vector;
@@ -26,6 +29,10 @@ public:
     void addObject();
     void addMovingObject();
     void addStationaryObject();
+
+    void createPrey();
+    void createPred();
+    void createFood();
 
 private:
 };
