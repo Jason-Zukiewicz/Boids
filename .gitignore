@@ -1,5 +1,6 @@
 # Ignore the build folder
 /build/
+/SDL2/
 .vscode/
 
 # Ignore compiled binaries
