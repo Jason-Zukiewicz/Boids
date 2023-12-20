@@ -1,15 +1,12 @@
 # Ignore the build folder
-<<<<<<< HEAD
-=======
-/build/
 /SDL2/
->>>>>>> 7423a03fbf21d866cc66d608cadb785091f17896
 /.vscode/
 
 # Ignore compiled binaries
 *.o
 *.out
 *.exe
+app
 
 # Ignore any other generated files or directories
 # Add more patterns if needed based on your project
