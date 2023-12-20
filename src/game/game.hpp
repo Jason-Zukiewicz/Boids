@@ -2,16 +2,14 @@
 
 #include <cstdio>
 
-#include <memory>
 #include <iostream>
+#include <memory>
 
 #include <SDL2/SDL.h>
 
 #include "../physics/physicsHandler.hpp"
-#include "../events/eventHandler.hpp"
 
-class Game
-{
+class Game {
 public:
     bool isRunning = true;
     int frameRate = 60;
@@ -21,11 +19,17 @@ public:
 private:
     SDL_Window *window;
     SDL_Renderer *renderer;
-
     PhysicsHandler pHandler;
-    //  EventHandler eHandler;
 
-    SDL_Event event;
+    typedef void (*quit_handler_t)(void);
+    typedef void (*keydown_handler_t)(SDL_Keycode);
+    typedef void (*keyup_handler_t)(SDL_Keycode);
+
+    struct {
+        quit_handler_t quit;
+        keydown_handler_t keydown;
+        keyup_handler_t keyup;
+    } event_handlers;
 
 public:
     Game();
@@ -35,4 +39,5 @@ private:
     void Run();
     void Update();
     void Draw();
+    void Events();
 };

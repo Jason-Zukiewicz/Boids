@@ -1,11 +1,10 @@
 #pragma once
 
+#include "color.hpp"
 #include <SDL2/SDL.h>
 #include <cstdio>
-#include "color.hpp"
 
-class Object
-{
+class Object {
     int id;
     SDL_Rect rect;
     Color color;

@@ -1,14 +1,12 @@
 #include "physicsHandler.hpp"
 
-PhysicsHandler::PhysicsHandler(int w, int h) : WIDTH(w), HEIGHT(h)
-{
+PhysicsHandler::PhysicsHandler(int w, int h) : WIDTH(w), HEIGHT(h) {
     objs.clear();
 }
 
 PhysicsHandler::~PhysicsHandler() {}
 
-void PhysicsHandler::addObject()
-{
+void PhysicsHandler::addObject() {
     int x = rand() % ((WIDTH - 0) + 1);
     int y = rand() % ((HEIGHT - 0) + 1);
     int w = rand() % ((100 - 5) + 1) + 5;
@@ -21,7 +19,6 @@ void PhysicsHandler::addObject()
     Object obj(x, y, w, h, r, g, b, a);
     objs.push_back(obj);
 }
-vector<Object> *PhysicsHandler::getObjects()
-{
+vector<Object> *PhysicsHandler::getObjects() {
     return &objs;
 }

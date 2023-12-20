@@ -6,8 +6,7 @@
 #include <vector>
 using std::vector;
 
-class PhysicsHandler
-{
+class PhysicsHandler {
 public:
     vector<Object> objs;
     int WIDTH;

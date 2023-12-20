@@ -1,5 +1,4 @@
-struct Color
-{
+struct Color {
     int r;
     int g;
     int b;

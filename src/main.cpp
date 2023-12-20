@@ -2,8 +2,7 @@
 #include <SDL2/SDL.h>
 #include <iostream>
 
-int main()
-{
+int main() {
     Game g;
     return 0;
 }
