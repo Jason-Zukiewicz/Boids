@@ -1,10 +1,10 @@
 
 #pragma once
 
-#include "food.hpp"
-#include "object.hpp"
-#include "pred.hpp"
-#include "prey.hpp"
+#include "object/food.hpp"
+#include "object/object.hpp"
+#include "object/pred.hpp"
+#include "object/prey.hpp"
 #include <random>
 #include <vector>
 using std::vector;

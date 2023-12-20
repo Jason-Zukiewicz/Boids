@@ -11,10 +11,10 @@ BUILD_DIR = build
 # Files
 MAIN_SRC = $(SRC_DIR)/main.cpp
 GAME_SRC = $(SRC_DIR)/game/game.cpp
-OBJECT_SRC = $(SRC_DIR)/physics/object.cpp 
-PREY_SRC = $(SRC_DIR)/physics/prey.cpp 
-PRED_SRC = $(SRC_DIR)/physics/pred.cpp 
-FOOD_SRC = $(SRC_DIR)/physics/food.cpp 
+OBJECT_SRC = $(SRC_DIR)/physics/object/object.cpp 
+PREY_SRC = $(SRC_DIR)/physics/object/prey.cpp 
+PRED_SRC = $(SRC_DIR)/physics/object/pred.cpp 
+FOOD_SRC = $(SRC_DIR)/physics/object/food.cpp 
 PHYSICS_SRC = $(SRC_DIR)/physics/physicsHandler.cpp 
 
 # Object files
