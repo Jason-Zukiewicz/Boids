@@ -1,12 +1,28 @@
 #include "game.hpp"
 
-Game::Game() : window(nullptr), renderer(nullptr), isRunning(true)
+Game::Game() : isRunning(true), window(nullptr), renderer(nullptr), pHandler(WIDTH, HEIGHT)
 {
-    window = SDL_CreateWindow("SDL2 Window", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WIDTH, HEIGHT, 0);
-    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+    if (SDL_Init(SDL_INIT_VIDEO) != 0)
+    {
+        printf("[ERROR] Could Not INIT SDL\n");
+        return;
+    }
 
-    if (window && renderer)
-        Run();
+    window = SDL_CreateWindow("SDL2 Window", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WIDTH, HEIGHT, 0);
+    if (!window)
+    {
+        printf("[ERROR] Could Not Create Window\n");
+        return;
+    }
+
+    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+    if (!window)
+    {
+        printf("[ERROR] Could Not Create Renderer\n");
+        return;
+    }
+
+    Run();
 }
 
 Game::~Game()
@@ -17,14 +33,9 @@ Game::~Game()
 }
 
 void Game::Run()
-{ 
+{
     while (isRunning)
     {
-        if (!objs.empty())
-        {
-            handler.setObjects(&objs);
-            handler.check();
-        }
 
         while (SDL_PollEvent(&event) != 0)
         {
@@ -38,28 +49,10 @@ void Game::Run()
                 // Handle key press event
                 switch (event.key.keysym.sym)
                 {
-                case SDLK_UP:
-                    // Handle UP arrow key press
-                    break;
-                case SDLK_DOWN:
-                    // Handle DOWN arrow key press
-                    break;
-                    // Add cases for other keys as needed
                 case SDLK_q:
                     return;
                 case SDLK_p:
-                    rand() % ((100 - 5) + 1) + 5;
-                    int x = rand() % ((WIDTH - 0) + 1);
-                    int y = rand() % ((HEIGHT - 0) + 1);
-                    int w = rand() % ((100 - 5) + 1) + 5;
-                    int h = rand() % ((100 - 5) + 1) + 5;
-                    int r = rand() % ((255 - 0) + 1);
-                    int g = rand() % ((255 - 0) + 1);
-                    int b = rand() % ((255 - 0) + 1);
-                    int a = 255;
-
-                    Object obj(x, y, w, h, r, g, b, a);
-                    objs.push_back(obj);
+                    pHandler.addObject();
                     break;
                 }
             }
@@ -80,12 +73,16 @@ void Game::Draw()
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
 
-    for (Object &obj : objs) // Iterate by reference to avoid making copies
+    vector<Object> *objs = pHandler.getObjects();
+    if (objs != nullptr)
     {
-
-        Color color = obj.getColor();
-        SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
-        SDL_RenderFillRect(renderer, obj.getRect());
+        for (Object &obj : *objs)
+        {
+            Color color = obj.getColor();
+            SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
+            SDL_Rect *rect = obj.getRect();
+            SDL_RenderFillRect(renderer, rect);
+        }
     }
 
     SDL_RenderPresent(renderer);

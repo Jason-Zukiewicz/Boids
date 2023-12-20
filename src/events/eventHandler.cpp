@@ -52,8 +52,9 @@ void EventHandler::check()
     }
      */
 }
-
+/*
 void EventHandler::setObjects(vector<Object> *objsPtr)
 {
     objs = objsPtr;
 }
+*/

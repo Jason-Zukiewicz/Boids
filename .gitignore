@@ -1,5 +1,4 @@
 # Ignore the build folder
-/build/
 .vscode/
 
 # Ignore compiled binaries

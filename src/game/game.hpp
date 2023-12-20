@@ -1,17 +1,14 @@
 #pragma once
 
 #include <cstdio>
-#include <vector>
+
 #include <memory>
 #include <iostream>
-#include <random>
 
 #include <SDL2/SDL.h>
 
-#include "../object/object.hpp"
-#include "../handler/eventHandler.hpp"
-
-using std::vector;
+#include "../physics/physicsHandler.hpp"
+#include "../events/eventHandler.hpp"
 
 class Game
 {
@@ -24,9 +21,10 @@ public:
 private:
     SDL_Window *window;
     SDL_Renderer *renderer;
-    vector<Object> objs;
-    //PhysicsHandler pHandler;
-    EventHandler handler;
+
+    PhysicsHandler pHandler;
+    //  EventHandler eHandler;
+
     SDL_Event event;
 
 public:
