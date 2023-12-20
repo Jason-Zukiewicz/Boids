@@ -1,4 +1,9 @@
 # Ignore the build folder
+<<<<<<< HEAD
+=======
+/build/
+/SDL2/
+>>>>>>> 7423a03fbf21d866cc66d608cadb785091f17896
 .vscode/
 
 # Ignore compiled binaries
