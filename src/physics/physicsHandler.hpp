@@ -17,9 +17,15 @@ public:
     PhysicsHandler(int w, int h);
     ~PhysicsHandler();
 
-    void addObject();
     vector<Object> *getObjects();
     void Update();
+    void onScreen(Object *obj);
+    void checkCollision();
+    bool isColliding(Object *obj1, Object *obj2);
+
+    void addObject();
+    void addMovingObject();
+    void addStationaryObject();
 
 private:
 };

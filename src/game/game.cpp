@@ -84,6 +84,12 @@ void Game::Events() {
             case SDLK_p:
                 pHandler.addObject();
                 break;
+            case SDLK_i:
+                pHandler.addMovingObject();
+                break;
+            case SDLK_o:
+                pHandler.addStationaryObject();
+                break;
             }
         }
     }
