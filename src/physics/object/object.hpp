@@ -2,31 +2,33 @@
 
 #include "../util.hpp"
 #include <SDL2/SDL.h>
+#include <cmath>
 #include <cstdio>
+#include <vector>
+using std::vector;
 
-const int SIZE = 50;
+const int SIZE = 10;
 
 class Object {
 private:
     int id;
 
 public:
-    SDL_Rect rect;
-    Color color;
-    vec2 pos, vel, acc;
+    vector<SDL_Vertex> verts;
+    SDL_FPoint pos, vel, acc;
 
 public:
     Object();
     Object(int x, int y);
-    Object(int x, int y, int w, int h, int r, int g, int b, int a);
-    ~Object();
+    Object(int x, int y, int r, int g, int b, int a);
+    Object(SDL_FPoint point, SDL_Color color);
+    virtual ~Object();
 
-    void Update();
-    SDL_Rect *getRect();
-    Color getColor();
+    virtual void Update();
+    vector<SDL_Vertex> *getVerts();
 
-    vec2 getPosition();
-    vec2 getNextPosition();
+    SDL_FPoint getPosition();
+    SDL_FPoint getNextPosition();
 
 private:
 };

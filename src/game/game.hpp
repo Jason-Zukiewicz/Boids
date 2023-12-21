@@ -22,16 +22,6 @@ private:
     SDL_Renderer *renderer;
     PhysicsHandler pHandler;
 
-    typedef void (*quit_handler_t)(void);
-    typedef void (*keydown_handler_t)(SDL_Keycode);
-    typedef void (*keyup_handler_t)(SDL_Keycode);
-
-    struct {
-        quit_handler_t quit;
-        keydown_handler_t keydown;
-        keyup_handler_t keyup;
-    } event_handlers;
-
 public:
     Game();
     ~Game();

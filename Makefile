@@ -2,13 +2,13 @@
 CC = g++
 
 # Compiler flags
-CFLAGS = -Wall -Wextra -std=c++20 -Wno-comment -Wno-narrowing
+CFLAGS = -Wall -Wextra -std=c++20 -Wno-comment -Wno-narrowing -Wno-unused-parameter
 
 # Directories
 SRC_DIR = src
 BUILD_DIR = build
 
-# Files
+# Files-
 MAIN_SRC = $(SRC_DIR)/main.cpp
 GAME_SRC = $(SRC_DIR)/game/game.cpp
 OBJECT_SRC = $(SRC_DIR)/physics/object/object.cpp 

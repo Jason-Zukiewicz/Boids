@@ -8,5 +8,7 @@ public:
     Prey(int x, int y);
     ~Prey();
 
+    void Update() override;
+
 private:
 };

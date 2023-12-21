@@ -53,13 +53,13 @@ void Game::Draw() {
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
 
-    vector<Object> *objs = pHandler.getObjects();
-    if (objs != nullptr) {
-        for (Object &obj : *objs) {
-            Color color = obj.getColor();
-            SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
-            SDL_Rect *rect = obj.getRect();
-            SDL_RenderFillRect(renderer, rect);
+    vector<Object *> *objsPtr = pHandler.getObjects();
+    if (objsPtr != nullptr) {
+        for (Object *objPtr : *objsPtr) {
+            vector<SDL_Vertex> *verts = objPtr->getVerts();
+            if (verts != nullptr) {
+                SDL_RenderGeometry(renderer, nullptr, verts->data(), verts->size(), nullptr, 0);
+            }
         }
     }
 
@@ -76,19 +76,12 @@ void Game::Events() {
             isRunning = false;
             return;
         } else if (event.type == SDL_KEYDOWN) {
-
             switch (event.key.keysym.sym) {
             case SDLK_q:
                 isRunning = false;
                 return;
             case SDLK_p:
                 pHandler.addObject();
-                break;
-            case SDLK_i:
-                pHandler.addMovingObject();
-                break;
-            case SDLK_o:
-                pHandler.addStationaryObject();
                 break;
             case SDLK_z:
                 pHandler.createPrey();

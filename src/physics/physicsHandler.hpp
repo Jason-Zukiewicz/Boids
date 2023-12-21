@@ -11,7 +11,7 @@ using std::vector;
 
 class PhysicsHandler {
 public:
-    vector<Object> objs;
+    vector<Object *> objs;
     int WIDTH;
     int HEIGHT;
 
@@ -20,16 +20,15 @@ public:
     PhysicsHandler(int w, int h);
     ~PhysicsHandler();
 
-    vector<Object> *getObjects();
+    vector<Object *> *getObjects();
     void Update();
+
     void onScreen(Object *obj);
     void checkCollision();
-    bool isColliding(Object *obj1, Object *obj2);
+
+    // bool isColliding(Object *obj1, Object *obj2);
 
     void addObject();
-    void addMovingObject();
-    void addStationaryObject();
-
     void createPrey();
     void createPred();
     void createFood();

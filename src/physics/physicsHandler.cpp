@@ -4,37 +4,50 @@ PhysicsHandler::PhysicsHandler(int w, int h) : WIDTH(w), HEIGHT(h) {
     objs.clear();
 }
 
-PhysicsHandler::~PhysicsHandler() {}
+PhysicsHandler::~PhysicsHandler() {
+    for (auto obj : objs)
+        delete obj;
+}
 
 void PhysicsHandler::Update() {
     checkCollision();
     for (auto &obj : objs) {
-        obj.Update();
+        obj->Update();
     }
 }
 
-bool PhysicsHandler::isColliding(Object *obj1, Object *obj2) {
-    return SDL_HasIntersection(&(obj1->rect), &(obj2->rect)) == SDL_TRUE;
+vector<Object *> *PhysicsHandler::getObjects() {
+    return &objs;
 }
+
+// < ----------------------------------- [ Collision ] -----------------------------------------> \\
+
 
 void PhysicsHandler::onScreen(Object *obj) {
     if (obj->pos.x < 0) {
-        obj->pos.x = WIDTH;
+        obj->vel.x = -obj->vel.x;
     } else if (obj->pos.x > WIDTH) {
-        obj->pos.x = 0;
+        obj->vel.x = -obj->vel.x;
     }
 
     if (obj->pos.y < 0) {
-        obj->pos.y = HEIGHT;
+        obj->vel.y = -obj->vel.y;
     } else if (obj->pos.y > HEIGHT) {
-        obj->pos.y = 0;
+        obj->vel.y = -obj->vel.y;
     }
 }
 
+/*
+bool PhysicsHandler::isColliding(Object *obj1, Object *obj2) {
+    return SDL_HasIntersection(&(obj1->rect), &(obj2->rect)) == SDL_TRUE;
+}
+*/
+
 void PhysicsHandler::checkCollision() {
     for (size_t i = 0; i < objs.size(); ++i)
-        onScreen(&objs[i]);
+        onScreen(objs[i]);
 
+    /*
     for (size_t i = 0; i < objs.size(); ++i) {
         for (size_t j = i + 1; j < objs.size(); ++j) {
             if (isColliding(&objs[i], &objs[j])) {
@@ -46,50 +59,23 @@ void PhysicsHandler::checkCollision() {
             }
         }
     }
+    */
 }
 
-// < ----------------------------------- [ OBJECT CREATION ] ----------------------------------------->
+// < ----------------------------------- [ OBJECT CREATION ] -----------------------------------------> \\
 
 void PhysicsHandler::createPrey() {
-    Prey prey(200, 300);
-    objs.push_back(prey);
+    objs.push_back(new Prey(WIDTH / 4, HEIGHT / 2));
 }
 
 void PhysicsHandler::createPred() {
-    Pred pred(400, 300);
-    objs.push_back(pred);
+    objs.push_back(new Pred(WIDTH / 1.33, HEIGHT / 2));
 }
 
 void PhysicsHandler::createFood() {
-    Food food(300, 100);
-    objs.push_back(food);
-}
-// < ----------------------------------- [ TEMP OBJECTS] ----------------------------------------->
-
-void PhysicsHandler::addMovingObject() {
-    Object obj(200, 300, 100, 100, 0, 0, 255, 255);
-    obj.vel.x = 10;
-    objs.push_back(obj);
-}
-
-void PhysicsHandler::addStationaryObject() {
-    Object obj(600, 300, 100, 100, 255, 0, 0, 255);
-    objs.push_back(obj);
+    objs.push_back(new Food(WIDTH / 2, HEIGHT / 2));
 }
 
 void PhysicsHandler::addObject() {
-    int x = rand() % ((WIDTH - 0) + 1);
-    int y = rand() % ((HEIGHT - 0) + 1);
-    int w = rand() % ((100 - 5) + 1) + 5;
-    int h = rand() % ((100 - 5) + 1) + 5;
-    int r = rand() % ((255 - 0) + 1);
-    int g = rand() % ((255 - 0) + 1);
-    int b = rand() % ((255 - 0) + 1);
-    int a = 255;
-
-    Object obj(x, y, w, h, r, g, b, a);
-    objs.push_back(obj);
-}
-vector<Object> *PhysicsHandler::getObjects() {
-    return &objs;
+    objs.push_back(new Object(WIDTH / 2, HEIGHT / 2));
 }
