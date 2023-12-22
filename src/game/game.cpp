@@ -92,6 +92,9 @@ void Game::Events() {
             case SDLK_c:
                 pHandler.createFood();
                 break;
+            case SDLK_SPACE:
+                pHandler.create();
+                break;
             }
         }
     }

@@ -4,10 +4,10 @@
 #include <SDL2/SDL.h>
 #include <cmath>
 #include <cstdio>
+#include <random>
 #include <vector>
-using std::vector;
 
-const int SIZE = 10;
+using std::vector;
 
 class Object {
 private:

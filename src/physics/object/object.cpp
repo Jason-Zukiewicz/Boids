@@ -2,6 +2,7 @@
 
 Object::Object()
     : pos{0, 0}, vel{0, 0}, acc{0, 0} {
+
 }
 
 Object::Object(int x, int y)
@@ -58,7 +59,7 @@ Object::Object(SDL_FPoint point, SDL_Color color)
         {
             {
                 SDL_FPoint{x1, y1},
-                color,
+                WHITE,
                 SDL_FPoint{0, 0},
             },
             {

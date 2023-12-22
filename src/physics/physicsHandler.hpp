@@ -5,6 +5,7 @@
 #include "object/object.hpp"
 #include "object/pred.hpp"
 #include "object/prey.hpp"
+#include <cmath>
 #include <random>
 #include <vector>
 using std::vector;
@@ -32,6 +33,7 @@ public:
     void createPrey();
     void createPred();
     void createFood();
+    void create();
 
 private:
 };

@@ -5,15 +5,14 @@
 #include <iostream>
 #include <memory>
 
-#include <SDL2/SDL.h>
-
 #include "../physics/physicsHandler.hpp"
+#include <SDL2/SDL.h>
 
 class Game {
 public:
     bool isRunning = true;
-    int WIDTH = 1200;
-    int HEIGHT = 1200;
+    int WIDTH = 600;
+    int HEIGHT = 600;
     const int targetFPS = 30;
     const int delayTime = 1000 / targetFPS;
 

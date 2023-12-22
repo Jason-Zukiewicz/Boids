@@ -34,7 +34,7 @@ SDL_LIB = -lSDL2
 
 all: $(EXEC)
 
-$(EXEC): $(MAIN_OBJ) $(GAME_OBJ) $(OBJECT_OBJ) $(PRED_OBJ) $(PREY_OBJ)  $(FOOD_OBJ) $(PHYSICS_OBJ)
+$(EXEC): $(MAIN_OBJ) $(GAME_OBJ) $(OBJECT_OBJ) $(PRED_OBJ) $(PREY_OBJ)  $(FOOD_OBJ)  $(PHYSICS_OBJ)
 	$(CC) $(CFLAGS) $^ -o $(BUILD_DIR)/$@ $(SDL_LIB)
 
 $(MAIN_OBJ): $(MAIN_SRC)
@@ -54,6 +54,7 @@ $(PRED_OBJ): $(PRED_SRC)
 
 $(FOOD_OBJ): $(FOOD_SRC)
 	$(CC) $(CFLAGS) -c $< -o $@
+
 
 $(PHYSICS_OBJ): $(PHYSICS_SRC)
 	$(CC) $(CFLAGS) -c $< -o $@
