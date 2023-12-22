@@ -13,18 +13,30 @@ Pred::~Pred() {
 }
 
 void Pred::Update() {
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<> dist(-.1, .1); // Generate random floats within the specified range
+
+    temp.x = dist(gen); // Directly use the generated random float
+    temp.y = dist(gen);
+
+    acc.x += temp.x;
+    acc.y += temp.y;
+
     vel.x += acc.x;
     vel.y += acc.y;
-
-    pos.x += vel.x;
-    pos.y += vel.y;
 
     float mag = sqrt(vel.x * vel.x + vel.y * vel.y);
     SDL_FPoint norm = {0.0f, 0.0f};
     if (mag != 0) {
-        norm.x = vel.x / mag;
+        norm.x = vel.x = vel.x / mag;
         norm.y = -vel.y / mag;
+        vel.y = -norm.y;
     }
+
+    pos.x += vel.x;
+    pos.y += vel.y;
 
     float hSize = SIZE / 2;
 

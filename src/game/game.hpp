@@ -11,8 +11,8 @@
 class Game {
 public:
     bool isRunning = true;
-    int WIDTH = 600;
-    int HEIGHT = 600;
+    int WIDTH = 1200;
+    int HEIGHT = 1200;
     const int targetFPS = 30;
     const int delayTime = 1000 / targetFPS;
 

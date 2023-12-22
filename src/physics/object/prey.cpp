@@ -16,15 +16,16 @@ void Prey::Update() {
     vel.x += acc.x;
     vel.y += acc.y;
 
-    pos.x += vel.x;
-    pos.y += vel.y;
-
     float mag = sqrt(vel.x * vel.x + vel.y * vel.y);
     SDL_FPoint norm = {0.0f, 0.0f};
     if (mag != 0) {
-        norm.x = vel.x / mag;
+        norm.x = vel.x = vel.x / mag;
         norm.y = -vel.y / mag;
+        vel.y = -norm.y;
     }
+
+    pos.x += vel.x;
+    pos.y += vel.y;
 
     float hSize = SIZE / 2;
 

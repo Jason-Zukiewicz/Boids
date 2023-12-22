@@ -3,6 +3,8 @@
 
 class Pred : public Object {
 public:
+    SDL_FPoint temp;
+
 private:
 public:
     Pred(int x, int y);
